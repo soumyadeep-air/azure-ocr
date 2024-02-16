@@ -43,9 +43,10 @@ async function extract({
   //   const poller = await client.beginAnalyzeDocument("prebuilt-read", formUrl);
   const poller = await client.beginAnalyzeDocument(process.env.MODEL, formUrl);
 
-  const { content, pages, languages, styles, keyValuePairs } = await poller.pollUntilDone();
+  const { documents: [result] } = await poller.pollUntilDone();
 
-  return { content, pages, languages, styles, keyValuePairs };
+  return result
+  // return { content, pages, languages, styles, keyValuePairs };
 }
 
 // main().catch((error) => {

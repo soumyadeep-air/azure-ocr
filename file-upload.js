@@ -35,15 +35,12 @@ const handleUpload = async (req, res) => {
     // }
   });
   // const blobName = "IMG_20240128_194405_699.jpg";
-  const { content, keyValuePairs, styles } = await extract({
+  const result = await extract({
     formUrl: `https://aispfiles.blob.core.windows.net/test-ocr/${blobName}`,
   });
 
   return res.send({
-    blobName,
-    content,
-    keyValuePairs,
-    styles
+   result
     // message: `Upload file ${blobName} successfully of ${Math.ceil(
     //   req.file.size / 1024
     // )}KB, Request Id: ${uploadBlobResponse?.requestId || ""}`,
